@@ -11,17 +11,18 @@ function initMap() {
   getData();
   map.data.setStyle(function(feature) {
   var magnitude = feature.getProperty('mag');
+  var timeAgo = feature.getProperty('time');
   return {
-    icon: getCircle(magnitude)
+    icon: getCircle(magnitude, timeAgo)
   };
 });
 }
 
-function getCircle(magnitude) {
+function getCircle(magnitude, timeAgo) {
   return {
     path: google.maps.SymbolPath.CIRCLE,
     fillColor: 'red',
-    fillOpacity: .2,
+    fillOpacity: (5E11 / timeAgo),
     scale: Math.pow(2, magnitude)/2,
     strokeColor: 'white',
     strokeWeight: .5
