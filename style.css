@@ -7,4 +7,14 @@ html,body {
   width: 100vw;
   height: 100vh;
   background-color: grey;
+  position:absolute;
+}
+
+.infocard {
+  z-index: 3;
+  width: 30vw;
+  height: 10vh;
+  position:fixed;
+  right: 8px;
+  bottom: 15px;
 }

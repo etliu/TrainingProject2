@@ -1,4 +1,4 @@
-
+//function main(){
 var piparray = [];
 var dataarray = [];
 var map;
@@ -10,11 +10,22 @@ function initMap() {
   });
   getData();
   map.data.setStyle(function(feature) {
-  var magnitude = feature.getProperty('mag');
-  return {
-    icon: getCircle(magnitude)
-  };
-});
+    var magnitude = feature.getProperty('mag');
+    return {
+      icon: getCircle(magnitude)
+    };
+  });
+
+
+   map.data.addListener('mouseover', function(event) {
+     $('.infocard').remove();
+     var source = $("#infocard-template").html();
+     var template = Handlebars.compile(source);
+     var context = {title: event.feature.getProperty("place").match(/([A-Z][a-z]+,*\s*)+/g),
+      supportingtext: "     Magnitude" + " " + event.feature.getProperty("mag") + " earthquake, " + event.feature.getProperty("place"),
+      eqlink: event.feature.getProperty("url")};
+     $(document.body).append(template(context));
+   });
 }
 
 function getCircle(magnitude) {
@@ -26,16 +37,18 @@ function getCircle(magnitude) {
     strokeColor: 'white',
     strokeWeight: .5
   };
+
 }
 
 function getData () {
   $.get("http://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/4.5_week.geojson",
   function(data){
-      //$.each(data.features, function (index, value){
-        //dataarray.push(value);
-      //})
+      $.each(data.features, function (index, value){
+        dataarray.push(value);
+      })
         map.data.addGeoJson(data);
 
       //console.log(dataarray)
   });
 };
+//};

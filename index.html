@@ -1,14 +1,39 @@
 <!DOCTYPE html>
 <head>
+
+  <!-- MDL -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  <link rel="stylesheet" href="https://code.getmdl.io/1.2.1/material.indigo-pink.min.css">
+  <script defer src="https://code.getmdl.io/1.2.1/material.min.js"></script>
+
   <link href = "./style.css" rel = "stylesheet" />
 </head>
 <body>
-  <div id = "map"></div>
-
-  <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB_w9qrCKeDrxQl0nRxirPMLa0mW3sI-Eg&callback=initMap">
+  <script src="https://cdn.jsdelivr.net/handlebarsjs/4.0.5/handlebars.min.js"></script>
+  <div id = "map">
+  </div>
+  <script id="infocard-template" type="text/x-handlebars-template">
+    <div class = "mdl-card infocard mdl-shadow--4dp">
+      <div class = "mdl-card__title" style="height: 100px">
+        <h1 class = "mdl-card__title-text">{{title}}</h1>
+      </div>
+      <div class = "mdl-card__supporting-text">
+        {{supportingtext}}
+      </div>
+      <div class="mdl-card__actions mdl-card--border" style="height: 50px;">
+        <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" id = "eqlink" href = "{{eqlink}}">
+          Learn More
+        </a>
+      </div>
+    </div>
   </script>
+
+
+
   <!-- jQuery -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 
   <script src = "./Javascript.js"></script>
+  <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB_w9qrCKeDrxQl0nRxirPMLa0mW3sI-Eg&callback=initMap">
+  </script>
 </body>
