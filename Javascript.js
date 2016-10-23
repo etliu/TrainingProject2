@@ -41,7 +41,7 @@ function getCircle(magnitude, timeAgo) {
 }
 
 function getData () {
-  $.get("http://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/4.5_week.geojson",
+  $.get("https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/4.5_week.geojson",
   function(data){
       $.each(data.features, function (index, value){
         dataarray.push(value);
